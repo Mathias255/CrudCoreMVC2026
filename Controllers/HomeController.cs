@@ -44,5 +44,19 @@ namespace CrudCoreMVC2026.Controllers
             }
             return View(oUsuarioVM);
         }
+        [HttpPost]
+        public IActionResult Usuario_Detalle(UsuarioVM oUsuarioVM)
+        {
+            if(oUsuarioVM.oUsuario.IdUsuario == 0)
+            {
+                _DBContext.Usuario.Add(oUsuarioVM.oUsuario);
+            }
+            else
+            {
+                _DBContext.Usuario.Update(oUsuarioVM.oUsuario);
+            }
+            _DBContext.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

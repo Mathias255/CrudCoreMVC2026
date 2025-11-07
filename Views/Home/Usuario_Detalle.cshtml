@@ -1,8 +1,46 @@
-﻿
+﻿@model CrudCoreMVC2026.Models.crud.UsuarioVM;
 @{
     ViewData["Title"] = "Usuario_Detalle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Usuario_Detalle</h1>
+<h1>Cree un nuevo Usuario</h1>
+
+<div class="row">
+    <div class="col-sm-4">
+        <form asp-action="Usuario_Detalle" asp-controller="Home" method="post">
+            <input type="hidden" asp-for="oUsuario.IdUsuario" />
+            <div class="mb-2">
+                <label class="form-label" asp-for="oUsuario.Nombrecompleto">Nombre Completo:</label>
+                <input class="form-control form-control-sm" asp-for="oUsuario.Nombrecompleto" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="oUsuario.Correo">Correo</label>
+                <input class="form-control form-control-sm" asp-for="oUsuario.Correo" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="oUsuario.Telefono">Teléfono:</label>
+                <input class="form-control form-control-sm" asp-for="oUsuario.Telefono" type="text" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="oUsuario.IdCargo">Cargo:</label>
+                <select class="form-control form-control-sm" asp-for="oUsuario.IdCargo" asp-items="@Model.oListaCargos">
+                    <option selected disabled>--Seleccionar--</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                @if (Model.oUsuario.IdUsuario == 0)
+                {
+                    <button class="btn btn-primary btn-sm w-25" type="submit">Crear</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
+                }
+            </div>
+            <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home"> Volver </a>
+        </form>
+    </div>
+</div>
 
